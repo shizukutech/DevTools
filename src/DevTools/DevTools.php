@@ -183,7 +183,7 @@ class DevTools extends PluginBase implements CommandExecutor{
 		$phar->startBuffering();
 		foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($filePath)) as $file){
 			$path = ltrim(str_replace(["\\", $filePath], ["/", ""], $file), "/");
-			if($path{0} === "." or strpos($path, "/.") !== false){
+			if($path[0] === "." or strpos($path, "/.") !== false){
 				continue;
 			}
 			$phar->addFile($file, $path);
@@ -225,7 +225,7 @@ class DevTools extends PluginBase implements CommandExecutor{
 		$filePath = rtrim(str_replace("\\", "/", $filePath), "/") . "/";
 		foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($filePath . "src")) as $file){
 			$path = ltrim(str_replace(["\\", $filePath], ["/", ""], $file), "/");
-			if($path{0} === "." or strpos($path, "/.") !== false or substr($path, 0, 4) !== "src/"){
+			if($path[0] === "." or strpos($path, "/.") !== false or substr($path, 0, 4) !== "src/"){
 				continue;
 			}
 			$phar->addFile($file, $path);
